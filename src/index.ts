@@ -1,7 +1,9 @@
 import { AxiosRequestConfig } from "./types";
 import xhr from './core/xhr'
+import { buildUrl } from "./helper/url";
 
 export default function axios(config: AxiosRequestConfig) {
+    processConfig(config);
     xhr(config)
 }
 
@@ -17,3 +19,14 @@ export default function axios(config: AxiosRequestConfig) {
  *      }
  * })
  */
+
+
+function processConfig(config: AxiosRequestConfig) {
+    config.url = transformUrl(config);
+}
+
+function transformUrl(config: AxiosRequestConfig) {
+    const { url, params } = config;
+    return buildUrl(url, params);
+}
+
