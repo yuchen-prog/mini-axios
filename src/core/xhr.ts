@@ -1,8 +1,9 @@
-import { AxiosRequestConfig, AxiosResponse } from '../types'
+import { parseHeaders } from '../helper/header';
+import { AxiosPromise, AxiosRequestConfig, AxiosResponse } from '../types'
 
 
 // 利用XMLHttpRequest 发送请求
-export default function xhr(config: AxiosRequestConfig) {
+export default function xhr(config: AxiosRequestConfig): AxiosPromise {
 
     return new Promise((resolve) => {
         const { url, method = 'get', data = null, params, headers, responseType } = config;
@@ -18,7 +19,7 @@ export default function xhr(config: AxiosRequestConfig) {
             if (request.readyState !== 4) {
                 return
             }
-            const responseHeaders = request.getAllResponseHeaders();
+            const responseHeaders = parseHeaders(request.getAllResponseHeaders());
             const responseData = responseType && responseType !== 'text'
                 ? request.response : request.responseText;
 

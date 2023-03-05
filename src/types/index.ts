@@ -29,6 +29,6 @@ export interface AxiosResponse {
 }
 
 
-export interface AxiosPromise extends Promise<AxiosPromise> {
+export interface AxiosPromise extends Promise<AxiosResponse> {
 
 }
