@@ -6,7 +6,7 @@ import { processHeaders } from "./helper/header";
 
 export default function axios(config: AxiosRequestConfig) {
     processConfig(config);
-    xhr(config)
+    return xhr(config)
 }
 
 
@@ -44,3 +44,13 @@ function transformHeader(config: AxiosRequestConfig) {
     return processHeaders(headers, data)
 }
 
+// 处理服务端返回的数据，支持链式调用
+// axios({...}).then((res) => {...})
+
+// 返回的内容包括:
+// 1. 数据 data
+// 2. 状态码 status
+// 3. 状态消息 statusText
+// 4. 响应头 headers
+// 5. 请求配置对象 config
+// 5. 对象实例 request
