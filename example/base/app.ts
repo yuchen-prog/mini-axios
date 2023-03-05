@@ -85,7 +85,7 @@ axios({
     a: 1,
     b: 2
   },
-  responseType: 'json',
+  // responseType: 'json',
 }).then((res) => {
   console.log(res);
 

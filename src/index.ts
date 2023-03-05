@@ -1,12 +1,14 @@
-import { AxiosRequestConfig } from "./types";
+import { AxiosRequestConfig, AxiosResponse } from "./types";
 import xhr from './core/xhr'
 import { buildUrl } from "./helper/url";
-import { transformRequestData } from "./helper/data";
+import { transformRequestData, transformResponse } from "./helper/data";
 import { processHeaders } from "./helper/header";
 
 export default function axios(config: AxiosRequestConfig) {
     processConfig(config);
-    return xhr(config)
+    return xhr(config).then((res) => {
+        return transformResponseData(res)
+    })
 }
 
 
@@ -54,3 +56,9 @@ function transformHeader(config: AxiosRequestConfig) {
 // 4. 响应头 headers
 // 5. 请求配置对象 config
 // 5. 对象实例 request
+
+
+function transformResponseData(res: AxiosResponse) {
+    res.data = transformResponse(res.data);
+    return res;
+}
