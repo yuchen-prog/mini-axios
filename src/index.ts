@@ -62,3 +62,10 @@ function transformResponseData(res: AxiosResponse) {
     res.data = transformResponse(res.data);
     return res;
 }
+
+/**
+ * 处理异常错误：使请求过程中发生的任何错误可以在reject中捕获到
+ * 1. 网络错误
+ * 2. 超时错误
+ * 3. 非200状态码
+ */
