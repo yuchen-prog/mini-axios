@@ -6,7 +6,8 @@ axios({
 }).then((res) => {
     console.log(res);
 }).catch((err) => {
-    console.log(err);
+    console.log(err.message);
+    console.log(err.request);
 })
 
 
@@ -16,7 +17,7 @@ axios({
 }).then((res) => {
     console.log(res);
 }).catch((err) => {
-    console.log(err);
+    console.log(err.message);
 })
 
 axios({
@@ -25,6 +26,8 @@ axios({
     timeout: 2000
 }).then((res) => {
     console.log(res)
+
 }).catch((e) => {
     console.log(e.message)
+    console.log(e.code)
 })
